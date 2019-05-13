@@ -13,13 +13,14 @@ function succeed(item) {
 
 function fail(item) {
   const newItem = Object.create(item);
+  const {enhancement} = newItem;
 
-  if (newItem.enhancement > 16) {
-    newItem.durability = newItem.durability - 1;
-  } else if (newItem.enhancement >= 15) {
-    newItem.durability = newItem.durability - 10;
-  } else {
-    newItem.durability = newItem.durability - 5;
+  if (enhancement > 16) {
+    newItem.durability -= 1;
+  } else if (enhancement >= 15) {
+    newItem.durability -= 10;
+  } else if (enhancement < 15) {
+    newItem.durability -= 5;
   }
   return {...newItem};
 }
@@ -35,7 +36,7 @@ function get(item) {
   if (newItem.enhancement > 0) {
     newItem.name = `[+${newItem.enhancement}] ${newItem.name}`;
   } else {
-    newItem.name = newItem.name;
+    newItem.name = `${newItem.name}`;
   }
   return {...newItem};
 }

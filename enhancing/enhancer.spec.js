@@ -3,7 +3,7 @@ const enhancer = require('./enhancer.js');
 describe('enhancer.js', () => {
   describe('repair() method', () => {
     const user = {
-      name: 'new item',
+      name: 'new user',
       enhancement: 15,
       durability: 20
     };
@@ -26,12 +26,12 @@ describe('enhancer.js', () => {
       expect(newUser).not.toBe(user);
       expect(newUser.durability).not.toBe(20);
       expect(newUser.durability).toBe(10);
-      expect(newUser.durability).not.toBe(user.durability);
     });
 
     it('Should take an object and return the name including the enhancement level in the name only if enhancement > 0', () => {
       const newUser = enhancer.get(user);
-      expect(newUser.name).toBe('[+15] new item');
+      expect(newUser.name).not.toBe('new user');
+      expect(newUser.name).toBe('[+15] new user');
     });
   });
 });
