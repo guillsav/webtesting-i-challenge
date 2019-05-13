@@ -9,7 +9,7 @@ function succeed(item) {
   const newItem = Object.create(item);
   let {enhancement} = newItem;
   enhancement < 20 ? enhancement++ : 20;
-  return {...newItem, enhancement};
+  return {...item, enhancement};
 }
 
 function fail(item) {
@@ -23,13 +23,14 @@ function fail(item) {
   } else if (enhancement < 15) {
     durability -= 5;
   }
-  return {...newItem, durability};
+  return {...item, durability};
 }
 
 function repair(item) {
   const newItem = Object.create(item);
-  newItem.durability = 100;
-  return {...newItem};
+  let {durability} = newItem;
+  durability = 100;
+  return {...item, durability};
 }
 
 function get(item) {
@@ -40,5 +41,5 @@ function get(item) {
   } else {
     name = `${name}`;
   }
-  return {...newItem, name};
+  return {...item, name};
 }
