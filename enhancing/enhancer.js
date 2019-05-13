@@ -8,12 +8,20 @@ module.exports = {
 function succeed(item) {
   const newItem = Object.create(item);
   newItem.enhancement < 20 ? newItem.enhancement++ : 20;
-
   return {...newItem};
 }
 
 function fail(item) {
-  return {...item};
+  const newItem = Object.create(item);
+
+  if (newItem.enhancement > 16) {
+    newItem.durability = newItem.durability - 1;
+  } else if (newItem.enhancement >= 15) {
+    newItem.durability = newItem.durability - 10;
+  } else {
+    newItem.durability = newItem.durability - 5;
+  }
+  return {...newItem};
 }
 
 function repair(item) {

@@ -18,6 +18,14 @@ describe('enhancer.js', () => {
       expect(newUser).not.toBe(user);
       expect(user.enhancement).not.toBe(20);
       expect(newUser.enhancement).toBe(16);
+      expect(newUser.enhancement).not.toBe(user.durability);
+    });
+
+    it('Should take an object, check if the enhancement is < 15, then return the durability - 5 if enhancement < 15 or durability - 10 if enhancement >= 15', () => {
+      const newUser = enhancer.fail(user);
+      expect(newUser).not.toBe(user);
+      expect(newUser.durability).not.toBe(20);
+      expect(newUser.durability).toBe(10);
     });
   });
 });
