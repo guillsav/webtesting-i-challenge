@@ -2,21 +2,26 @@ module.exports = {
   succeed,
   fail,
   repair,
-  get,
+  get
 };
 
 function succeed(item) {
-  return { ...item };
+  const newItem = Object.create(item);
+  newItem.enhancement < 20 ? newItem.enhancement++ : 20;
+
+  return {...newItem};
 }
 
 function fail(item) {
-  return { ...item };
+  return {...item};
 }
 
 function repair(item) {
-  return { ...item };
+  const newItem = Object.create(item);
+  newItem.durability = 100;
+  return {...newItem};
 }
 
 function get(item) {
-  return { ...item };
+  return {...item};
 }
