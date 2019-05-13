@@ -6,15 +6,13 @@ module.exports = {
 };
 
 function succeed(item) {
-  const newItem = Object.create(item);
-  let {enhancement} = newItem;
+  let {enhancement} = item;
   enhancement < 20 ? enhancement++ : 20;
   return {...item, enhancement};
 }
 
 function fail(item) {
-  const newItem = Object.create(item);
-  let {enhancement, durability} = newItem;
+  let {enhancement, durability} = item;
 
   if (enhancement > 16) {
     durability -= 1;
@@ -27,19 +25,13 @@ function fail(item) {
 }
 
 function repair(item) {
-  const newItem = Object.create(item);
-  let {durability} = newItem;
+  let {durability} = item;
   durability = 100;
   return {...item, durability};
 }
 
 function get(item) {
-  const newItem = Object.create(item);
-  let {enhancement, name} = newItem;
-  if (enhancement > 0) {
-    name = `[+${enhancement}] ${name}`;
-  } else {
-    name = `${name}`;
-  }
+  let {enhancement, name} = item;
+  enhancement > 0 ? (name = `[+${enhancement}] ${name}`) : (name = `${name}`);
   return {...item, name};
 }
