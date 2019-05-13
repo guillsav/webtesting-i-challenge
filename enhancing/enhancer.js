@@ -31,5 +31,11 @@ function repair(item) {
 }
 
 function get(item) {
-  return {...item};
+  const newItem = Object.create(item);
+  if (newItem.enhancement > 0) {
+    newItem.name = `[+${newItem.enhancement}] ${newItem.name}`;
+  } else {
+    newItem.name = newItem.name;
+  }
+  return {...newItem};
 }
